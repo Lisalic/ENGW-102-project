@@ -20,29 +20,30 @@
      bgAudio.play().then(() => {
        console.log("Audio started automatically.");
      }).catch(error => {
-       console.log("Autoplay blocked (normal browser behavior). Waiting for click...");
+       // This is normal on load
+       console.log("Autoplay blocked on load. Waiting for interaction...");
        addInteractionListeners();
      });
    }
    
    function addInteractionListeners() {
-     const startAudioOnInteraction = () => {
+     const startAudioOnInteraction = (event) => {
+       
        bgAudio.play().then(() => {
+         console.log("Audio successfully started!");
          document.removeEventListener('click', startAudioOnInteraction);
          document.removeEventListener('keydown', startAudioOnInteraction);
-         document.removeEventListener('scroll', startAudioOnInteraction);
        }).catch(err => {
-         console.log("Audio still blocked, waiting for next interaction.");
+         console.error("Audio failed:", err);
+         console.log("File source:", bgAudio.currentSrc);
        });
      };
    
      document.addEventListener('click', startAudioOnInteraction);
      document.addEventListener('keydown', startAudioOnInteraction);
-     document.addEventListener('scroll', startAudioOnInteraction);
    }
    
    tryPlayBackgroundAudio();
-   
    
    const playButtons = document.querySelectorAll('.play-btn');
    
