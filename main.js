@@ -85,3 +85,12 @@ window.onscroll = function() {
   document.getElementById("myBar").style.width = scrolled + "%";
   document.getElementById("progress-text").innerText = Math.round(scrolled) + "%";
 };
+const bgAudio = document.getElementById('bg-audio');
+const muteBtn = document.getElementById('bg-mute-btn');
+
+if (muteBtn) {
+    muteBtn.addEventListener('click', () => { 
+        bgAudio.muted = true;
+        muteBtn.style.display = 'none'; 
+    });
+}

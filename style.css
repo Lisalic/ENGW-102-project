@@ -182,7 +182,6 @@ body {
   color: #111;
 }
 
-/* The "Tooltip" */
 .reveal-text:hover::after {
   content: attr(data-truth);
   position: absolute;
