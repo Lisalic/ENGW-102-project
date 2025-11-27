@@ -77,3 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = Math.min(68,(winScroll / height) * 100);
+  
+  document.getElementById("myBar").style.width = scrolled + "%";
+  document.getElementById("progress-text").innerText = Math.round(scrolled) + "%";
+};
